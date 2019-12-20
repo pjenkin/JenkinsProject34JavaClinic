@@ -30,5 +30,13 @@ pipeline
                 archiveArtifacts artifacts: 'target/*.jar', fingerprint: true       // 35 archive & fingerprinting 
             }
         }
+        stage('Deploy')         // 36 Deploying our Java web project - with human input
+        {
+            steps
+            {
+                input 'Do you approve the deployment?'
+                echo 'Deploying ...'
+            }
+        }
     }
 }
