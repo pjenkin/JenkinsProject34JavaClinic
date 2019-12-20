@@ -27,6 +27,7 @@ pipeline
             {
                 sh 'mvn -e -X clean package'                               // use -e to troubleshoot errors (e.g. .m2 folder)
                 junit '**/target/surefire-reports/TEST-*.xml'           // test & present results ready for Jenkins reporting
+                archiveArtifacts artifacts: 'target/*.jar', fingerprint: true       // 35 archive & fingerprinting 
             }
         }
     }
