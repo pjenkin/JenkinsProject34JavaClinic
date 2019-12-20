@@ -23,7 +23,7 @@ pipeline
         {
             steps
             {
-                sh 'mvn clean package'                              
+                sh 'mvn -e clean package'                               // use -e to troubleshoot errors (e.g. .m2 folder)
                 junit '**/target/surefire-reports/TEST-*.xml'           // test & present results ready for Jenkins reporting
             }
         }
