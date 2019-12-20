@@ -8,6 +8,8 @@ pipeline
         {
             image 'maven:3.6-ibmjava-alpine'
             label 'linux'       // we have to run on the node which is the only Jenkins instance with Docker at the mo
+            args '-v $HOME/.m2:/var/maven/.m2:z -e MAVEN_CONFIG=/var/maven/.m2 -e MAVEN_OPTS="-Duser.home=/var/maven"'
+            // Try https://stackoverflow.com/a/55415674 to not run as root but still avoid "Could not create local repository at /.m2/repository"
         }
     }
     stages
