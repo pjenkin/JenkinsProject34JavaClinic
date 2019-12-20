@@ -35,7 +35,13 @@ pipeline
             steps
             {
                 input 'Do you approve the deployment?'
-                echo 'Deploying ...'
+                // echo 'Deploying ...'
+                sh 'scp target/*.jar jenkins@192.168.50.10:/opt/pet/'
+                //35 Copy project artifact from Jenkins machine to target machine (i) 6:00
+                sh "ssh jenkins@192.168.50.10 'nohup java -jar /opt/pet/spring-petclinic-2.2.0.jar &'"
+                //35 Start the application (from artifact) on the target machine (ii) 
+                // version number in real pipeline would need to be from environment variable not hard coded
+                // NB if the target machine does not have scp installed, an error will ensue at (i)
             }
         }
     }
